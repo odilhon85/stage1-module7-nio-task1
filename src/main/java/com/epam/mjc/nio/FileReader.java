@@ -2,6 +2,7 @@ package com.epam.mjc.nio;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.channels.FileChannel;
 import java.nio.file.Files;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class FileReader {
 
     public List<String> readData(File file){
         List<String> data = null;
-        try{
+        try(FileChannel channel = null){
             data = Files.readAllLines(file.toPath());
         }catch(IOException e){
             e.printStackTrace();
